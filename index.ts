@@ -1,5 +1,6 @@
 import fs from "fs";
 import resolve from "path";
+import { getAllDrive } from "./src/utils";
 
 async function readFileList(path, filesList) {
   var files = fs.readdirSync(path);
@@ -17,15 +18,19 @@ async function readFileList(path, filesList) {
   });
 }
 
-fs.readdir("C:/", (err, files) => {
-  if (err) {
-    console.log(err);
-  } else {
-    files.forEach((f) => {
-      console.log(f);
-    });
-  }
+getAllDrive().then((res) => {
+  console.log(res);
 });
+
+// fs.readdir("C:/", (err, files) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     files.forEach((f) => {
+//       console.log(f);
+//     });
+//   }
+// });
 
 // console.log("__dirname : " + __dirname);
 // console.log("cwd       : " + process.cwd());
