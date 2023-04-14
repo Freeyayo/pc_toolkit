@@ -1,6 +1,8 @@
 import fs from "fs";
+// import prompts from "prompts";
 import resolve from "path";
 import { getAllDrive } from "./src/utils";
+const prompts = require("prompts");
 
 async function readFileList(path, filesList) {
   var files = fs.readdirSync(path);
@@ -18,9 +20,9 @@ async function readFileList(path, filesList) {
   });
 }
 
-getAllDrive().then((res) => {
-  console.log(res);
-});
+// getAllDrive().then((res) => {
+//   console.log(res);
+// });
 
 // fs.readdir("C:/", (err, files) => {
 //   if (err) {
@@ -34,3 +36,30 @@ getAllDrive().then((res) => {
 
 // console.log("__dirname : " + __dirname);
 // console.log("cwd       : " + process.cwd());
+
+// prompts.inject(["@terkelg", ["#ff0000", "#0000ff"]]);
+
+(async () => {
+  const response = await prompts([
+    {
+      type: "text",
+      name: "twitter",
+      message: `What's your twitter handle?`,
+    },
+    {
+      type: "multiselect",
+      name: "value",
+      message: "Pick colors",
+      choices: [
+        { title: "Red", value: "#ff0000" },
+        { title: "Green", value: "#00ff00", disabled: true },
+        { title: "Blue", value: "#0000ff", selected: true },
+      ],
+      max: 2,
+      hint: "- Space to select. Return to submit",
+    },
+  ]);
+
+  console.log(response);
+  // => { twitter: 'terkelg', color: [ '#ff0000', '#0000ff' ] }
+})();
