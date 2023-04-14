@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["node_modules/@types"],
     "lib": ["es6", "DOM"],
     "target": "es6",
     "module": "commonjs",
